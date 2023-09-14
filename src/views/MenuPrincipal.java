@@ -77,7 +77,7 @@ public class MenuPrincipal extends JFrame {
 		panel.add(panel_1);
 		panel_1.setLayout(null);
 		
-		JLabel lblCopyR = new JLabel("Desarrollado por Fulanita de Tal © 2023");
+		JLabel lblCopyR = new JLabel("Created by Bernardo Trujillo © 2023");
 		lblCopyR.setBounds(315, 11, 284, 19);
 		lblCopyR.setForeground(new Color(240, 248, 255));
 		lblCopyR.setFont(new Font("Roboto", Font.PLAIN, 16));
@@ -164,7 +164,7 @@ public class MenuPrincipal extends JFrame {
 		lblTitulo.setFont(new Font("Roboto Light", Font.PLAIN, 20));
 	}
 	
-	//Código que permite movimentar a janela pela tela seguindo a posição de "x" e "y"	
+	//Código que permite mover la ventana por la pantalla siguiendo la posición de "x" e "y"	
 	private void headerMousePressed(java.awt.event.MouseEvent evt) {
         xMouse = evt.getX();
         yMouse = evt.getY();
