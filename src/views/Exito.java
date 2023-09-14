@@ -79,7 +79,7 @@ public class Exito extends JDialog {
 			{
 				JButton cancelButton = new JButton("Cancel");
 				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
+				//buttonPane.add(cancelButton);
 			}
 		}
 	}

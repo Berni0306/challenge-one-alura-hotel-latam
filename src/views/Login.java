@@ -29,6 +29,7 @@ public class Login extends JFrame {
 	private JPasswordField txtContrasena;
 	int xMouse, yMouse;
 	private JLabel labelExit;
+	private JLabel labelAtras;
 
 	/**
 	 * Launch the application.
@@ -84,7 +85,11 @@ public class Login extends JFrame {
 		btnexit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				Object[] paneOptions = {"OK", "CANCEL"};
+				int reallyExit = JOptionPane.showOptionDialog(null, "Realmente deseas salir?", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, paneOptions, paneOptions[0]);
+				if (JOptionPane.OK_OPTION == reallyExit) {	
+					System.exit(0);
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
@@ -186,7 +191,7 @@ public class Login extends JFrame {
 				btnLogin.setBackground(new Color(0, 156, 223));
 			}
 		
-			@Override
+			@Override 
 			public void mouseExited(MouseEvent e) {
 				btnLogin.setBackground(SystemColor.textHighlight);
 			}
@@ -232,6 +237,36 @@ public class Login extends JFrame {
 		header.setBounds(0, 0, 784, 36);
 		panel.add(header);
 		header.setLayout(null);
+		
+		JPanel btnAtras = new JPanel();
+		btnAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				MenuPrincipal menuPrincipal = new MenuPrincipal();
+				menuPrincipal.setVisible(true);
+				dispose();				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAtras.setBackground(new Color(12, 138, 199));
+				labelAtras.setForeground(Color.white);
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				 btnAtras.setBackground(Color.white);
+			     labelAtras.setForeground(Color.black);
+			}
+		});
+		btnAtras.setLayout(null);
+		btnAtras.setBackground(Color.WHITE);
+		btnAtras.setBounds(0, 0, 53, 36);
+		header.add(btnAtras);
+		
+		labelAtras = new JLabel("<");
+		labelAtras.setBounds(0, 0, 53, 36);
+		btnAtras.add(labelAtras);
+		labelAtras.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAtras.setFont(new Font("Roboto", Font.PLAIN, 23));
 	}
 	
 	private void Login() {

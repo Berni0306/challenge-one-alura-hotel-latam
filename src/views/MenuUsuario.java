@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
@@ -28,6 +29,7 @@ public class MenuUsuario extends JFrame {
 	int xMouse, yMouse;
 	private JLabel labelExit;
 	private JLabel labelRegistro;
+	private JLabel labelAtras;
 
 	/**
 	 * Launch the application.
@@ -76,10 +78,16 @@ public class MenuUsuario extends JFrame {
 		});
 		
 		JPanel panelMenu = new JPanel();
-		panelMenu.setBackground(new Color(12, 138, 199));
-		panelMenu.setBounds(0, 0, 257, 609);
-		contentPane.add(panelMenu);
 		panelMenu.setLayout(null);
+		panelMenu.setBackground(new Color(12, 138, 199));
+		panelMenu.setBounds(0, 36, 257, 609);
+		contentPane.add(panelMenu);
+		
+		JPanel panelAux = new JPanel();
+		panelAux.setLayout(null);
+		panelAux.setBackground(new Color(12, 138, 199));
+		panelAux.setBounds(53, 0, 204, 36);
+		contentPane.add(panelAux);
 		
 		JLabel lblNewLabel_2 = new JLabel("");
 		lblNewLabel_2.setBounds(50, 58, 150, 150);
@@ -154,11 +162,45 @@ public class MenuUsuario extends JFrame {
 		header.setBounds(0, 0, 944, 36);
 		contentPane.add(header);
 		
+		JPanel btnAtras = new JPanel();
+		btnAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Login login = new Login();
+				login.setVisible(true);
+				dispose();				
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnAtras.setBackground(Color.white);
+				labelAtras.setForeground(Color.black);
+			}			
+			@Override
+			public void mouseExited(MouseEvent e) {
+				 btnAtras.setBackground(new Color(12, 138, 199));
+			     labelAtras.setForeground(Color.black);
+			}
+		});
+		btnAtras.setLayout(null);
+		btnAtras.setBackground(new Color(12, 138, 199));
+		btnAtras.setBounds(0, 0, 53, 36);
+		header.add(btnAtras);
+		
+		labelAtras = new JLabel("<");
+		labelAtras.setBounds(0, 0, 53, 36);
+		btnAtras.add(labelAtras);
+		labelAtras.setHorizontalAlignment(SwingConstants.CENTER);
+		labelAtras.setFont(new Font("Roboto", Font.PLAIN, 23));
+		
 		JPanel btnexit = new JPanel();
 		btnexit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				System.exit(0);
+				Object[] paneOptions = {"OK", "CANCEL"};
+				int reallyExit = JOptionPane.showOptionDialog(null, "Realmente deseas salir?", "Message", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, paneOptions, paneOptions[0]);
+				if (JOptionPane.OK_OPTION == reallyExit) {	
+					System.exit(0);
+				}
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) {
