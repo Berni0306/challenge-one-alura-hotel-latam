@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
 		<attributes>
 			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
@@ -11,5 +17,13 @@
 	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/jgoodies-looks-2.4.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/junit-4.6.jar"/>
 	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jar_files/mysql-connector-java-8.0.17.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="JARS/c3p0-0.9.5.4.jar"/>
+	<classpathentry kind="lib" path="JARS/mchange-commons-java-0.2.16.jar"/>
+	<classpathentry kind="lib" path="JARS/mysql-connector-j-8.0.32.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>
