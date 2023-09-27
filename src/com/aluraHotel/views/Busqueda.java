@@ -42,7 +42,7 @@ public class Busqueda extends JFrame {
 	private JTextField txtBuscar;
 	private JTable tbHuespedes;
 	private JTable tbReservas;
-	private DefaultTableModel modelo;
+	private DefaultTableModel modeloReserva;
 	private DefaultTableModel modeloHuesped;
 	private JLabel labelAtras;
 	private JLabel labelExit;
@@ -101,22 +101,24 @@ public class Busqueda extends JFrame {
 		panel.setBounds(20, 169, 865, 328);
 		contentPane.add(panel);
 
-		tbReservas = new JTable();
+		tbReservas = new JTable(modeloRes);
+		tbReservas.getTableHeader().setReorderingAllowed(false);
 		tbReservas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tbReservas.setFont(new Font("Roboto", Font.PLAIN, 16));
-		modelo = (DefaultTableModel) tbReservas.getModel();
-		modelo.addColumn("Numero de Reserva");
-		modelo.isCellEditable(1, 1);
-		modelo.addColumn("Fecha Check In");
-		modelo.addColumn("Fecha Check Out");
-		modelo.addColumn("Valor");
-		modelo.addColumn("Forma de Pago");
+		modeloReserva = (DefaultTableModel) tbReservas.getModel();
+		modeloReserva.addColumn("Numero de Reserva");
+		modeloReserva.isCellEditable(1, 1);
+		modeloReserva.addColumn("Fecha Check In");
+		modeloReserva.addColumn("Fecha Check Out");
+		modeloReserva.addColumn("Valor");
+		modeloReserva.addColumn("Forma de Pago");
 		JScrollPane scroll_table = new JScrollPane(tbReservas);
 		panel.addTab("Reservas", new ImageIcon(Busqueda.class.getResource("/imagenes/reservado.png")), scroll_table, null);
 		scroll_table.setVisible(true);
 		
 		
-		tbHuespedes = new JTable();
+		tbHuespedes = new JTable(modeloHue);
+		tbHuespedes.getTableHeader().setReorderingAllowed(false);
 		tbHuespedes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tbHuespedes.setFont(new Font("Roboto", Font.PLAIN, 16));
 		modeloHuesped = (DefaultTableModel) tbHuespedes.getModel();
@@ -301,7 +303,7 @@ public class Busqueda extends JFrame {
 	 
 	 private void buscar() {
 		 modeloHuesped.setRowCount(0);
-		 modelo.setRowCount(0);
+		 modeloReserva.setRowCount(0);
 		 var contenidoHuesped = huespedController.buscar(txtBuscar.getText());
 		 var contenidoReserva = reservaController.buscar(txtBuscar.getText());
 		 if (contenidoHuesped.isEmpty() && contenidoReserva.isEmpty()) {
@@ -309,7 +311,7 @@ public class Busqueda extends JFrame {
 			 txtBuscar.setText("");
 			 txtBuscar.requestFocus();
 		 } else {
-			 contenidoReserva.forEach(reserva -> modelo.addRow(
+			 contenidoReserva.forEach(reserva -> modeloReserva.addRow(
 					 new Object[] {
 							 reserva.getId(),
 							 reserva.getFechaEntrada(),
@@ -344,14 +346,14 @@ public class Busqueda extends JFrame {
 			 tbHuespedes.getCellEditor().stopCellEditing();
 		 }
 		 if((tbReservas.getSelectedColumnCount() != 0 || tbReservas.getSelectedRowCount() != 0)) {
-			 Optional.ofNullable(modelo.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn()))
+			 Optional.ofNullable(modeloReserva.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn()))
 	         .ifPresentOrElse(fila -> {
 	             int reservaModificada;         
-	             var reserva = new Reserva(Integer.valueOf(modelo.getValueAt(tbReservas.getSelectedRow(), 0).toString()),
-	            		modelo.getValueAt(tbReservas.getSelectedRow(), 1).toString(),
-	             		modelo.getValueAt(tbReservas.getSelectedRow(), 2).toString(),
-	             		modelo.getValueAt(tbReservas.getSelectedRow(), 3).toString(),
-	             		modelo.getValueAt(tbReservas.getSelectedRow(), 4).toString());
+	             var reserva = new Reserva(Integer.valueOf(modeloReserva.getValueAt(tbReservas.getSelectedRow(), 0).toString()),
+	            		modeloReserva.getValueAt(tbReservas.getSelectedRow(), 1).toString(),
+	             		modeloReserva.getValueAt(tbReservas.getSelectedRow(), 2).toString(),
+	             		modeloReserva.getValueAt(tbReservas.getSelectedRow(), 3).toString(),
+	             		modeloReserva.getValueAt(tbReservas.getSelectedRow(), 4).toString());
 	             
 	             reservaModificada = this.reservaController.editar(reserva);
 					
@@ -388,10 +390,10 @@ public class Busqueda extends JFrame {
 	        return;
 		}
 		if((tbReservas.getSelectedColumnCount() != 0 || tbReservas.getSelectedRowCount() != 0)) {
-			 Optional.ofNullable(modelo.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn()))
+			 Optional.ofNullable(modeloReserva.getValueAt(tbReservas.getSelectedRow(), tbReservas.getSelectedColumn()))
 	         .ifPresentOrElse(fila -> {
 	             int reservaEliminada;         
-	             Integer id = Integer.valueOf(modelo.getValueAt(tbReservas.getSelectedRow(), 0).toString());
+	             Integer id = Integer.valueOf(modeloReserva.getValueAt(tbReservas.getSelectedRow(), 0).toString());
 	             
 	             reservaEliminada = this.reservaController.eliminar(id);
 					
@@ -410,4 +412,19 @@ public class Busqueda extends JFrame {
 	         }, () -> JOptionPane.showMessageDialog(this, "Por favor, elije un elemento a eliminar"));
 		 }
 	}
+	
+	DefaultTableModel modeloRes = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return column != 0;
+        }
+    };
+	
+    DefaultTableModel modeloHue = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return column != 0 && column != 6;
+        }
+    };
+    
 }
