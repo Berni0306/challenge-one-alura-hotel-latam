@@ -12,11 +12,11 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/jgoodies-common-1.2.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/jgoodies-looks-2.4.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jcalendar-1.4/lib/junit-4.6.jar"/>
-	<classpathentry kind="lib" path="C:/Users/berna/Downloads/jar_files/mysql-connector-java-8.0.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/berna/eclipse-workspace/com.aluraHotel/JARS/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/berna/eclipse-workspace/com.aluraHotel/JARS/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/berna/eclipse-workspace/com.aluraHotel/JARS/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/berna/eclipse-workspace/com.aluraHotel/JARS/junit-4.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/berna/eclipse-workspace/com.aluraHotel/JARS/mysql-connector-java-8.0.17.jar"/>
 	<classpathentry kind="lib" path="JARS/c3p0-0.9.5.4.jar"/>
 	<classpathentry kind="lib" path="JARS/mchange-commons-java-0.2.16.jar"/>
 	<classpathentry kind="lib" path="JARS/mysql-connector-j-8.0.32.jar"/>
